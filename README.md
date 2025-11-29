@@ -26,7 +26,7 @@ cd gemini_deploy
 nano config.yaml
 ```
 **必须修改配置文件**，填入您的真实 Key。
-- `custom_api_keys`: 设置给客户端使用的密码（自定义任意字符串，建议以 `sk-` 开头以获得最佳兼容性）。
+- `custom_api_keys`: 设置给客户端使用的密码（自定义任意字符串）。
 - `native_api_keys`: 填入真实的 Google Gemini API Keys。
 - `request_mode`:
   - `polling`: 轮询模式（按顺序使用 Key，省配额）。
