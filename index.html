@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini API Proxy</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+            padding: 40px;
+        }
+        h1, h2 {
+            color: #1a73e8;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .version-badge {
+            font-size: .6em;
+            background-color: #1a73e8;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: 400;
+        }
+        .mode-badge {
+            font-size: .8em;
+            background-color: #28a745;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .api-section {
+            margin-top: 30px;
+        }
+        .endpoint-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+            transition: box-shadow .3s ease;
+        }
+        .endpoint-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+        }
+        .endpoint-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .endpoint-method {
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: .9em;
+            text-transform: uppercase;
+        }
+        .method-get {
+            background-color: #6c757d;
+        }
+        .method-post {
+            background-color: #007bff;
+        }
+        .endpoint-path {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background-color: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: .95em;
+            color: #495057;
+        }
+        .warning-text {
+            color: #d93025;
+            font-weight: 700;
+            background-color: #fce8e6;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #f28b82;
+            margin-bottom: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: .9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gemini API Proxy <span class="version-badge">{{version}}</span></h1>
+        
+        <p>服务正在运行中。当前特权用户请求模式: <span class="mode-badge">{{mode}}</span></p>
+        
+        <div class="warning-text">
+            ⚠️ 注意：此反代地址仅供个人测试使用，接入公益站可能会导致你的 IP 地址被拉黑。
+        </div>
+
+        <div class="api-section">
+            <h2>OpenAI & Gemini 兼容接口</h2>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-post">POST</span>
+                    <code class="endpoint-path">/v1/chat/completions</code>
+                </div>
+            </div>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-post">POST</span>
+                    <code class="endpoint-path">/v1/images/generations</code>
+                </div>
+            </div>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-post">POST</span>
+                    <code class="endpoint-path">/v1/embeddings</code>
+                </div>
+            </div>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-get">GET</span>
+                    <code class="endpoint-path">/v1/models</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="api-section">
+            <h2>Gemini 原生接口</h2>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-get">GET</span>
+                    <code class="endpoint-path">/v1beta/models</code>
+                </div>
+            </div>
+            <div class="endpoint-card">
+                <div class="endpoint-title">
+                    <span class="endpoint-method method-post">POST</span>
+                    <code class="endpoint-path">/v1beta/models/{{model}}:{{action}}</code>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Gemini API Proxy {{version}} - 服务正常运行</p>
+        </footer>
+    </div>
+</body>
+</html>

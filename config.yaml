@@ -1,0 +1,40 @@
+# =================================================================
+# --- 1. custom_api_keys (自定义密钥/伪造密钥) ---
+# 用途：这是你自己设定的“密码”，用于在客户端（如 ChatGPT-Next-Web、沉浸式翻译等）中填写。
+# 逻辑：只要客户端请求头中的 Authorization Bearer Token 匹配列表中的任意一个，
+#       代理服务器就会接受请求，并使用下方的 native_api_keys 去转发给 Google。
+# 格式：列表格式，每一行用 "- " 开头。
+#
+# --- 2. native_api_keys (原生密钥/真实密钥) ---
+# 用途：这是你从 Google AI Studio (aistudio.google.com) 申请到的真实 API Key。
+# 逻辑：服务器会根据 request_mode 的策略（轮询或并发），从这个池子里取出一个 Key
+#       来向 Google 发起真实的请求。建议放入多个 Key 以提高并发能力。
+#
+# 注意：YAML 格式对缩进敏感，请确保缩进对齐，不要使用 Tab 键。
+# =================================================================
+
+custom_api_keys:
+  - "sk-my-password-123"      # 示例：你可以改成任何字符串，通常以 sk- 开头假装是 OpenAI Key
+  - "my-secret-key-abc"       # 你可以配置多个，给不同的朋友使用
+
+native_api_keys:
+  - "AIzaSyDxxxxxxxxxxxxxxxxx" # 在这里填入你的 Google Gemini API Key
+  # - "AIzaSyDzzzzzzzzzzzzzzzz"
+
+
+# 监听地址
+host: "0.0.0.0"
+
+# 监听端口
+port: 8003
+
+# 模式选择：
+# "polling" (轮询模式):
+#    优点：节省配额，逻辑稳定。缺点：如果有坏 Key，响应会有延迟。
+# "concurrent" (并发竞速模式):
+#    优点：速度最快，极大降低延迟。缺点：配额消耗快（一次请求消耗 N 个 Key 的配额）。
+request_mode: "polling"
+
+# [仅在 concurrent 模式下生效]
+# 每次并发尝试的 Key 数量。
+concurrent_batch_size: 3

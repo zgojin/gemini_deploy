@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  gemini-proxy:
+    container_name: gemini-proxy
+    build: .
+    restart: always
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./config.yaml:/app/config.yaml
+    environment:
+      - TZ=Asia/Shanghai
