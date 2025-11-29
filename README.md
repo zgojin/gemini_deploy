@@ -20,8 +20,14 @@
 git clone https://github.com/zgojin/gemini_deploy.git
 cd gemini_deploy
 ```
-### 2. 配置密钥 (重要)
-修改配置文件，填入您的真实 Key
+### 2. ⚙️ 配置密钥 (重要)
+**必须修改配置文件**，填入您的真实 Key。
+- `custom_api_keys`: 设置给客户端使用的密码（自定义任意字符串，建议以 `sk-` 开头以获得最佳兼容性）。
+- `native_api_keys`: 填入真实的 Google Gemini API Keys。
+- `request_mode`:
+  - `polling`: 轮询模式（按顺序使用 Key，省配额）。
+  - `concurrent`: 并发模式（同时发起请求，速度最快）。
+
+### 3.  启动服务
 ```bash
-nano config.yaml
-```
+docker compose up -d --build
