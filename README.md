@@ -41,4 +41,16 @@ nano docker-compose.yml
 ```bash
 docker compose up -d --build
 ```
-部署完成！服务运行在 8003 端口。
+部署完成！服务运行在 8003 端口（默认）。
+
+
+## 📝 常用管理命令
+
+**查看运行日志**：
+```bash
+docker logs -f gemini-proxy
+```
+**修改配置后重启** (修改 config.yaml 后需重启生效)
+```
+docker compose restart
+```
