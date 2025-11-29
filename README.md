@@ -10,7 +10,7 @@
 
 ---
 
-## 速部署 (Docker)
+## 快速部署 (Docker)
 
 确保您的服务器已安装 [Docker](https://docs.docker.com/get-docker/) 和 Docker Compose。
 
