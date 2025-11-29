@@ -30,7 +30,13 @@ nano config.yaml
 - `request_mode`:
   - `polling`: 轮询模式（按顺序使用 Key，省配额）。
   - `concurrent`: 并发模式（同时发起请求，速度最快）。
-
+### 2.1 修改端口 (可选)
+默认端口为 8003。如果该端口被占用或您想修改，请编辑 docker-compose.yml
+```bash
+nano docker-compose.yml
+```
+找到 `ports:` 下方的 "8003:8003"，仅修改冒号左边的数字。
+- 例如改为 8080 端口："8080:8003"
 ### 3.  启动服务
 ```bash
 docker compose up -d --build
