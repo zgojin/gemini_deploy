@@ -34,3 +34,5 @@ nano config.yaml
 ### 3.  启动服务
 ```bash
 docker compose up -d --build
+```
+部署完成！服务运行在 8003 端口。
