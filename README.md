@@ -1,6 +1,6 @@
 # Gemini API Proxy (Docker Edition)
 
-这是一个高性能的 Google Gemini API 代理服务，支持 OpenAI 格式兼容、多密钥轮询/并发加速、流式输出以及安全设置自动注入。
+这是一个 Google Gemini API 代理服务，支持 OpenAI 格式兼容、多密钥轮询/并发加速、流式输出以及安全设置自动注入。
 
 **核心功能**：
 - **OpenAI 接口兼容**：支持 `/v1/chat/completions` 等标准端点。
