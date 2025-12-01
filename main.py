@@ -59,7 +59,7 @@ try:
 
     REQUEST_MODE = config.get("request_mode", "polling").lower()
     CONCURRENT_BATCH_SIZE = int(config.get("concurrent_batch_size", 3))
-    TIMEOUT_SECONDS = 60.0
+    TIMEOUT_SECONDS = 120.0 # 最大响应时间
 
     # 参数校验
     if REQUEST_MODE not in ["polling", "concurrent"]:
@@ -517,3 +517,4 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host=SERVER_HOST, port=SERVER_PORT)
+
